@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SchoolC1.Models.Class>
+
+@{ ViewBag.Title = "Add"; }
+
+<h1>New Teacher</h1>
+<nav class="y-margin">
+    <a class="btn btn-primary" href="/Teacher/List">Back To Teachers</a>
+</nav>
+<div>
+    <form name="addTeacherForm" method="POST" action="/Teacher/Create">
+        <div class="form-group">
+            <label for="TeacherFname">First Name:</label>
+            <input asp-for="TeacherFname" class="form-control" type="text" id="TeacherFname" name="TeacherFname" />
+        </div>
+        <div class="form-group">
+            <label for="TeacherLname">Last Name:</label>
+            <input asp-for="TeacherLname" class="form-control" type="text" id="TeacherLname" name="TeacherLname" />
+        </div>
+        <div class="form-group">
+            <label for="EmployeeNumber">Employee Number:</label>
+            <input class="form-control" type="text" id="EmployeeNumber" name="EmployeeNumber" />
+        </div>
+        <div class="form-group">
+            <label for="TeacherHire">Hire Date:</label>
+            <input class="form-control" type="date" id="TeacherHire" name="TeacherHire" />
+        </div>
+        <div class="form-group">
+            <label for="TeacherSalary">Salary:</label>
+            <input class="form-control" type="number" step=".01" min="0" id="TeacherSalary" name="TeacherSalary" />
+        </div>
+        <div class="form-group">
+            <label for="course">Course:</label>
+            <select name="course" id="course">
+                @foreach (var course in Model)
+                {
+                <option value="@course.ClassName">@course.ClassName</option>
+                }
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Add Teacher" />
+    </form>
+</div>

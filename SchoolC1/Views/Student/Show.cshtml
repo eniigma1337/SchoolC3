@@ -1,0 +1,8 @@
+﻿@model SchoolC1.Models.Student
+
+@{ ViewBag.Title = "Student Details"; }
+
+<a href="/Student/List">Back To List</a>
+<h1>@Model.StudentFname @Model.StudentLname</h1>
+<p>Student Id: @Model.StudentNumber</p>
+<p>Enroll Date: @Model.EnrollDate.ToString("dd.MM.yyyy")</p>

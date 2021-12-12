@@ -1,0 +1,17 @@
+﻿@model IEnumerable<SchoolC1.Models.Teacher>
+@{ ViewBag.Title = "Search Results"; }
+<h1>Search Result</h1>
+<a href="/Teacher/List/">Back To List</a>
+<div id="containershow">
+    <div><h1>@Model.Count() Records Found.</h1></div>
+    @foreach (var Teacher in Model) {
+    
+<div>
+    <p>---------------------------------</p>
+    <p>@Teacher.TeacherFname @Teacher.TeacherLname</p>
+    <p>Employee Number: @Teacher.EmployeeNumber</p>
+    <p>Hire Date: @Teacher.TeacherHire.ToString("MMM dd, yyyy")</p>
+    <p>Salary: $@Teacher.TeacherSalary</p>
+</div>
+    }
+</div>

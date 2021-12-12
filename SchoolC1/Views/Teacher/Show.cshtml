@@ -1,0 +1,21 @@
+﻿@model Tuple<SchoolC1.Models.Teacher, IEnumerable<SchoolC1.Models.Class>>
+
+@{ ViewBag.Title = "Show Teacher Info"; }
+
+<nav class="y-margin">
+    <a class="btn btn-default" href="/Teacher/List/">Back To Teacher List</a>
+    <a class="btn btn-danger" href="/Teacher/DeleteConfirm/@Model.Item1.TeacherId">Delete</a>
+</nav>
+<div id="show-container">
+    <h1>@Model.Item1.TeacherFname @Model.Item1.TeacherLname</h1>
+    <p>Employee Number: @Model.Item1.EmployeeNumber</p>
+    <p>Hire Date: @Model.Item1.TeacherHire.Value.ToString("dd.MM.yyyy")</p>
+    <p>Salary: @Model.Item1.TeacherSalary</p>
+    <p>Course(s):</p>
+    <ul>
+        @foreach (var course in Model.Item2)
+        {
+<li>@course.ClassCode - @course.ClassName</li>}
+    </ul>
+</div>
+

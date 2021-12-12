@@ -1,0 +1,46 @@
+﻿h1{
+    color:Black;
+
+}
+h2{
+    font-size:1em;
+}
+p{
+    font-size:1.5em;
+    color:black;
+}
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.returnlink {
+    text-align: right;
+    margin-top: 30px;
+    float: right;
+    font-weight:bold;
+    color:red;
+}
+
+#container{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 80px; 
+}
+.showcontainer {
+    width: 100%;
+    margin: 0;
+}
+.listitems {
+    margin:10px auto;
+    font-size:1.5em;
+}

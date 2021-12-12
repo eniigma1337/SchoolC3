@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SchoolC1.Models.Class>
+@{
+    ViewBag.Title = "Class List";
+}
+
+<div id="container">
+    <h1>List of Classes and Codes</h1>
+
+    @foreach (var Class in Model)
+    {
+
+        <div class="listitems">
+            <div class="showcontainer">
+                <h2><a href="/Class/Show/@Class.ClassId"> @Class.ClassName - Class Code: @Class.ClassCode </a></h2>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,15 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Error";
+}
+
+<nav class="y-margin">
+    <a class="btn btn-default" href="/Teacher/Add">Back To Add Teacher</a>
+</nav>
+@if (Model != null)
+{
+    foreach (string error in Model)
+    {
+        <div class="alert alert-danger" role="alert">@error</div>
+    }
+}

@@ -1,0 +1,9 @@
+﻿@model SchoolC1.Models.Class
+
+@{ ViewBag.Title = "Show Class Info"; }
+
+<a href="/Class/List">Back To List</a>
+<h1>@Model.ClassName</h1>
+<p>@Model.ClassCode</p>
+<p>Start Date: @Model.ClassStart.ToString("dd.MM.yyyy")</p>
+<p>Finish Date: @Model.ClassFinish.ToString("dd.MM.yyyy")</p>

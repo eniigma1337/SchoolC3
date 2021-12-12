@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Teacher List";
+}
+
+<nav class="y-margin">
+    <a class="btn btn-default pull-left" href="/Teacher/Add">New Teacher</a>
+</nav>
+<div id="container">
+    <h1>List of Teachers</h1>
+    <form action="/Teacher/SearchResult/" method="GET">
+        <label for="search">Search: </label>
+        <input type="text" id="search" name="SearchKey" autocomplete="off" />
+        <input type="submit" value="Search" />
+    </form> 
+    @foreach (var teacher in Model)
+    {
+        <div class="listitems">
+            <div class="showcontainer"><a href="/Teacher/Show/@teacher.TeacherId">@teacher.TeacherFname @teacher.TeacherLname</a></div>
+        </div>
+
+
+    }
+</div>
+
