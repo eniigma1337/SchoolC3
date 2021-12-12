@@ -31,9 +31,9 @@
         <div class="form-group">
             <label for="course">Course:</label>
             <select name="course" id="course">
-                @foreach (var course in Model)
+                @foreach (var _class in Model)
                 {
-                <option value="@course.ClassName">@course.ClassName</option>
+                <option value="@_class.ClassName">@_class.ClassName</option>
                 }
             </select>
         </div>
