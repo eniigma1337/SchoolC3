@@ -193,8 +193,6 @@ namespace SchoolC1.Controllers
             cmd1.Prepare();
 
             cmd1.ExecuteNonQuery();
-
-            //Delete associated courses to maintain referential integrity
             cmd2.CommandText = "Delete from classes where teacherid=@id2";
             cmd2.Parameters.AddWithValue("@id2", id);
             cmd2.Prepare();
@@ -228,6 +226,32 @@ namespace SchoolC1.Controllers
             cmd.Parameters.AddWithValue("@EmployeeNumber", NewTeacher.EmployeeNumber);
             cmd.Parameters.AddWithValue("@TeacherHire", NewTeacher.TeacherHire);
             cmd.Parameters.AddWithValue("@TeacherSalary", NewTeacher.TeacherSalary);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+        }
+
+        [HttpPost]
+        [EnableCors(origins: "*", methods: "*", headers: "*")]
+        public void UpdateTeacher(int id, [FromBody] Teacher TeacherInfo)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Open the connection between the web server and database
+            Conn.Open();
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL QUERY
+            cmd.CommandText = "update teachers set teacherfname=@TeacherFname, teacherlname=@TeacherLname, employeenumber=@EmployeeNumber, hiredate=@TeacherHire, salary=@TeacherSalary where TeacherId=@TeacherId";
+            cmd.Parameters.AddWithValue("@TeacherFname", TeacherInfo.TeacherFname);
+            cmd.Parameters.AddWithValue("@TeacherLname", TeacherInfo.TeacherLname);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", TeacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@TeacherHire", TeacherInfo.TeacherHire);
+            cmd.Parameters.AddWithValue("@TeacherSalary", TeacherInfo.TeacherSalary);
+            cmd.Parameters.AddWithValue("@TeacherId", id);
             cmd.Prepare();
 
             cmd.ExecuteNonQuery();

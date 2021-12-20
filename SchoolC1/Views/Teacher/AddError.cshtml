@@ -1,15 +1,24 @@
-﻿@model List<string>
-@{
-    ViewBag.Title = "Error";
-}
+﻿@using SchoolC1.Models
+@model List<string>
+@{ ViewBag.Title = "Error"; }
 
+@{  }
+
+@if ((int)ViewData["type"] == 2)
+{
+int x = (int)ViewData["id"];
+<nav class="y-margin">
+    <a class="btn btn-default" href="/Teacher/Update/@x">Back To Edit Teacher</a>
+</nav> }
+else
+{
 <nav class="y-margin">
     <a class="btn btn-default" href="/Teacher/Add">Back To Add Teacher</a>
-</nav>
+</nav>}
+
 @if (Model != null)
 {
     foreach (string error in Model)
     {
-        <div class="alert alert-danger" role="alert">@error</div>
-    }
+<div class="alert alert-danger" role="alert">@error</div>}
 }

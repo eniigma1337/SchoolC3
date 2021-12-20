@@ -38,7 +38,7 @@ namespace SchoolC1.Controllers
             IEnumerable<Class> TeacherXClasses = controller.FindTeachersClass(id);
             Teacher TeacherX = controller.FindTeacher(id);
             //MAKE A TUPLE TO USE 2 MODELS FOR OUR VIEW
-            return View(Tuple.Create (TeacherX, TeacherXClasses));
+            return View(Tuple.Create(TeacherX, TeacherXClasses));
         }
 
         //POST : /Teacher/Delete/{id}
@@ -72,31 +72,33 @@ namespace SchoolC1.Controllers
         public ActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime? TeacherHire, Decimal TeacherSalary = 0)
         {
             List<string> errors = new List<string>();
+            int type = 1;
             //change the date format to match with database
             CultureInfo canada = new CultureInfo("en-CA");
             // Server side validation
-            
+
+
             if (string.IsNullOrEmpty(TeacherHire?.ToString(canada)))
             {
                 string dateString = TeacherHire?.ToString(canada);
                 errors.Add("Please enter a date!");
             }
-            // Validate TeacherFname
+
             if (string.IsNullOrEmpty(TeacherFname))
             {
                 errors.Add("Please enter a First Name!");
             }
-            // Validate TeacherLname
+
             if (string.IsNullOrEmpty(TeacherLname))
             {
                 errors.Add("Please enter a Last Name!");
             }
-            // Validate EmployeeNumber
+
             if (string.IsNullOrEmpty(EmployeeNumber))
             {
                 errors.Add("Please enter an Employee Number!");
             }
-            //Validate TeacherSalary
+
             if (TeacherSalary == 0)
             {
                 errors.Add("Please enter a Salary!");
@@ -104,6 +106,8 @@ namespace SchoolC1.Controllers
 
             if (errors.Count > 0)
             {
+                ViewData["type"] = type;
+
                 return View("AddError", errors);
             }
             else
@@ -119,6 +123,75 @@ namespace SchoolC1.Controllers
                 controller.AddTeacher(NewTeacher);
 
                 return RedirectToAction("List");
+            }
+        }
+
+
+        //GET : /Teacher/Update/{id}
+
+        public ActionResult Update(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher TeacherX = controller.FindTeacher(id);
+            return View(TeacherX);
+        }
+
+        [HttpPost]
+        public ActionResult Update(int id, string TeacherFname, string TeacherLname, string EmployeeNumber, DateTime? TeacherHire, Decimal TeacherSalary = 0)
+        {
+            List<string> errors = new List<string>();
+            int type = 2;
+
+            //change the date format to match with database
+            CultureInfo canada = new CultureInfo("en-CA");
+            // Server side validation
+
+
+            if (string.IsNullOrEmpty(TeacherHire?.ToString(canada)))
+            {
+                errors.Add("Please enter a date!");
+            }
+
+            if (string.IsNullOrEmpty(TeacherFname))
+            {
+                errors.Add("Please enter a First Name!");
+            }
+
+            if (string.IsNullOrEmpty(TeacherLname))
+            {
+                errors.Add("Please enter a Last Name!");
+            }
+
+            if (string.IsNullOrEmpty(EmployeeNumber))
+            {
+                errors.Add("Please enter an Employee Number!");
+            }
+
+            if (TeacherSalary == 0)
+            {
+                errors.Add("Please enter a Salary!");
+            }
+
+            if (errors.Count > 0)
+            {
+                ViewData["type"] = type;
+                ViewData["id"] = id;
+                return View("AddError", errors);
+            }
+            else
+            {
+                Teacher TeacherInfo = new Teacher();
+                TeacherInfo.TeacherFname = TeacherFname;
+                TeacherInfo.TeacherLname = TeacherLname;
+                TeacherInfo.EmployeeNumber = EmployeeNumber;
+                TeacherInfo.TeacherHire = TeacherHire;
+                TeacherInfo.TeacherSalary = TeacherSalary;
+
+                TeacherDataController controller = new TeacherDataController();
+                controller.UpdateTeacher(id, TeacherInfo);
+
+                //go back
+                return RedirectToAction("Show/" + id);
             }
         }
     }

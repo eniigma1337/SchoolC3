@@ -10,7 +10,7 @@
     <p>---------------------------------</p>
     <p>@Teacher.TeacherFname @Teacher.TeacherLname</p>
     <p>Employee Number: @Teacher.EmployeeNumber</p>
-    <p>Hire Date: @Teacher.TeacherHire.ToString("MMM dd, yyyy")</p>
+    <p>Hire Date: @Teacher.TeacherHire?.ToString("MMM dd, yyyy")</p>
     <p>Salary: $@Teacher.TeacherSalary</p>
 </div>
     }
