@@ -7,7 +7,7 @@
     <a class="btn btn-primary" href="/Teacher/Show/@Model.TeacherId">Back</a>
 </nav>
 <div>
-    <form name="addTeacherForm" method="POST" action="/Teacher/Update/@Model.TeacherId">
+    <form name="editTeacherForm" method="POST" action="/Teacher/Update/@Model.TeacherId">
         <div class="form-group">
             <label for="TeacherFname">First Name:</label>
             <input asp-for="TeacherFname" class="form-control" type="text" id="TeacherFname" name="TeacherFname" value="@Model.TeacherFname" />
